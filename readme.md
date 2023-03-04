@@ -8,7 +8,7 @@ Use your favourite package manager. No setup required.
 
 ```lua
 {
-    "mvllow/matcha.nvim"
+	"mvllow/matcha.nvim"
 }
 ```
 
@@ -28,6 +28,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 local matcha = require("matcha")
 
 vim.keymap.set("n", [[\f]], function()
-    matcha.toggle("LspFormatting")
+	matcha.toggle("LspFormatting")
 end)
 ```
