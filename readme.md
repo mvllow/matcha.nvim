@@ -25,9 +25,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
-local matcha = require("matcha")
-
 vim.keymap.set("n", [[\f]], function()
-	matcha.toggle("LspFormatting")
+	require("matcha").toggle("LspFormatting")
 end)
 ```
