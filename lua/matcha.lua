@@ -14,7 +14,6 @@ end
 
 M.enable = function(name, commands)
 	commands = snapshot[name] or commands
-	vim.pretty_print(commands)
 
 	vim.api.nvim_create_augroup(name, { clear = true })
 
