@@ -14,6 +14,12 @@ Use your favourite package manager. No setup required.
 
 ## Usage
 
+### Modular API
+
+This approach gives you the most flexibility. For a less verbose, albeit more
+confined approach, matcha can [handle your
+keymaps](#define-keymaps-inside-of-matcha) automatically.
+
 ```lua
 -- Create or use an existing augroup with autocommands
 local lsp_formatting = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -31,12 +37,30 @@ vim.keymap.set("n", [[\f]], function()
 end)
 
 -- Toggle options
-vim.keymap.set("n", [[\b]], function()
-	require("matcha").toggle("background")
-end)
 vim.keymap.set("n", [[\n]], function()
 	require("matcha").toggle("number")
 end)
+vim.keymap.set("n", [[\b]], function()
+	require("matcha").toggle("background")
+end)
+```
+
+### Define keymaps inside of matcha
+
+Setting `keys` inside the setup function will configure keymaps with a shared
+prefix and relevant description if using something like
+[whick-key.nvim](https://github.com/folke/which-key.nvim).
+
+```lua
+require("matcha").setup({
+	prefix = [[\]],
+	-- No keys are set by default
+	keys = {
+		b = "background",
+		f = "LspFormatting",
+		n = "number",
+	}
+})
 ```
 
 ## Argument types
