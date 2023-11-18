@@ -1,6 +1,7 @@
 local default_config = require("matcha.config")
-local toggle_option = require("matcha.vim-options").toggle_option
-local toggle_augroup = require("matcha.vim-augroups").toggle_augroup
+local toggle_augroup = require("matcha.handlers.augroups").toggle_augroup
+local toggle_builtin = require("matcha.handlers.builtins").toggle_builtin
+local toggle_option = require("matcha.handlers.options").toggle_option
 
 local M = {}
 M.config = {}
@@ -16,9 +17,9 @@ M.setup = function(opts)
 end
 
 M.toggle = function(name)
-	-- If name is all lowercase treat as vim option
-	-- else treat as vim augroup
-	if name == name:lower() then
+	if name:find("^matcha_") ~= nil then
+		toggle_builtin(name)
+	elseif name == name:lower() then
 		toggle_option(name)
 	else
 		toggle_augroup(name)

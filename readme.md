@@ -14,60 +14,80 @@ Use your favourite package manager. No setup required.
 
 ## Usage
 
-### Modular API
-
-This approach gives you the most flexibility. For a less verbose, albeit more
-confined approach, matcha can [handle your
-keymaps](#define-keymaps-inside-of-matcha) automatically.
-
-```lua
--- Create or use an existing augroup with autocommands
-local lsp_formatting = vim.api.nvim_create_augroup("LspFormatting", {})
-vim.api.nvim_clear_autocmds({ group = lsp_formatting })
-vim.api.nvim_create_autocmd("BufWritePre", {
-	group = lsp_formatting,
-	callback = function()
-		vim.lsp.buf.format()
-	end,
-})
-
--- Toggle augroups
-vim.keymap.set("n", [[\f]], function()
-	require("matcha").toggle("LspFormatting")
-end)
-
--- Toggle options
-vim.keymap.set("n", [[\n]], function()
-	require("matcha").toggle("number")
-end)
-vim.keymap.set("n", [[\b]], function()
-	require("matcha").toggle("background")
-end)
-```
-
-### Define keymaps inside of matcha
-
-Setting `keys` inside the setup function will configure keymaps with a shared
-prefix and relevant description if using something like
-[whick-key.nvim](https://github.com/folke/which-key.nvim).
+Setting `keys` inside the setup function will configure keymaps with a shared prefix and relevant description if using something like [which-key.nvim](https://github.com/folke/which-key.nvim).
 
 ```lua
 require("matcha").setup({
 	prefix = [[\]],
 	-- No keys are set by default
 	keys = {
+		f = "FormatOnSave",
 		b = "background",
-		f = "LspFormatting",
 		n = "number",
+		d = "matcha_diagnostics",
 	}
 })
 ```
 
-## Argument types
+Alternatively, we can use the toggle method directly:
 
-If a name passed to matcha is lowercase we treat it as a vim option, otherwise
-consider it a vim augroup.
+```lua
+require("matcha").toggle("FormatOnSave")
+```
 
-All boolean vim options should be supported. There are special handlers for
-non-boolean options. Contributions are welcome and appreciated, especially if
-supporting more options.
+### Augroups
+
+Reference existing augroups in our matcha keys or directly via `matcha.toggle`. Group names are expected to start with an uppercase letter.
+
+<details>
+
+<summary>Example setup of format on save augroup</summary>
+
+<br />
+
+```lua
+local formatting = vim.api.nvim_create_augroup("FormatOnSave", {})
+vim.api.nvim_clear_autocmds({ group = formatting })
+vim.api.nvim_create_autocmd("BufWritePre", {
+	group = formatting,
+	callback = function()
+		vim.lsp.buf.format()
+	end,
+})
+
+-- Assign a key in the matcha setup
+require("matcha").setup({
+	keys = {
+		f = "FormatOnSave"
+	},
+})
+
+-- Or toggle directly
+require("matcha").toggle("FormatOnSave")
+```
+
+</details>
+
+### Vim options
+
+Use matcha to toggle vim options. All boolean values should be supported, as well as a few special cases mentioned below.
+
+`background` - Toggle between "light" and "dark"
+
+`cmdheight` - Toggle between 0 and initial value or 1
+
+`laststatus` - Toggle between 0 and initial value or 2
+
+`signcolumn` - Toggle between "yes" and "no"
+
+### Matcha options
+
+In addition to vim options, matcha includes builtins for toggling more complex types. See [how they're implemented](/lua/matcha/handlers/builtins.lua).
+
+`matcha_diagnostics` - Enable/disable `vim.diagnostic`
+
+`matcha_quickfix` - Open/close quickfix menu
+
+## Contributing
+
+Contributions are welcome and appreciated 💜
