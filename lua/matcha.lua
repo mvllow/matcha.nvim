@@ -26,4 +26,18 @@ M.toggle = function(name)
 	end
 end
 
+--- Add matcha prefix to mini.clue
+--- https://github.com/echasnovski/mini.clue
+--- @usage
+--- ```lua
+--- require("mini.clue").setup({
+--- 	triggers = {
+--- 		require("matcha").clues_trigger()
+--- 	}
+--- })
+--- ```
+M.clues_trigger = function()
+	return { mode = "n", keys= M.config.prefix or default.config.prefix }
+end
+
 return M

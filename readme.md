@@ -88,6 +88,16 @@ In addition to vim options, matcha includes builtins for toggling more complex t
 
 `matcha_quickfix` - Open/close quickfix menu
 
+### Use with mini.clue
+
+```lua
+require("mini.clue").setup({
+	triggers = {
+		require("matcha").clues_trigger()
+	}
+})
+```
+
 ## Contributing
 
 Contributions are welcome and appreciated 💜
