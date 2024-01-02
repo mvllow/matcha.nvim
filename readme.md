@@ -14,7 +14,7 @@ Use your favourite package manager. No setup required.
 
 ## Usage
 
-Setting `keys` inside the setup function will configure keymaps with a shared prefix and relevant description if using something like [which-key.nvim](https://github.com/folke/which-key.nvim).
+Setting `keys` inside the setup function will configure keymaps with a shared prefix and relevant description if using something like [which-key.nvim](https://github.com/folke/which-key.nvim). Your prefix is added as a [mini.clue](https://github.com/echasnovski/mini.clue) trigger.
 
 ```lua
 require("matcha").setup({
@@ -87,16 +87,6 @@ In addition to vim options, matcha includes builtins for toggling more complex t
 `matcha_diagnostics` - Enable/disable `vim.diagnostic`
 
 `matcha_quickfix` - Open/close quickfix menu
-
-### Use with mini.clue
-
-```lua
-require("mini.clue").setup({
-	triggers = {
-		require("matcha").clues_trigger()
-	}
-})
-```
 
 ## Contributing
 

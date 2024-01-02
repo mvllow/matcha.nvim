@@ -40,4 +40,16 @@ M.clues_trigger = function()
 	return { mode = "n", keys= M.config.prefix or default.config.prefix }
 end
 
+--- Add matcha prefix to mini.clue
+vim.api.nvim_create_autocmd("BufEnter", {
+	desc = "Add matcha prefix to mini.clue triggers",
+	callback = function()
+		vim.b.miniclue_config = {
+			triggers = {
+				require("matcha").clues_trigger()
+			}
+		}
+	end
+})
+
 return M
