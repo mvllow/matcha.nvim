@@ -86,6 +86,8 @@ In addition to vim options, matcha includes builtins for toggling more complex t
 
 `matcha_diagnostics` - Enable/disable `vim.diagnostic`
 
+`matcha_diff_overlay` - Enable/disable `mini.diff` overlay (may be expanded to other diff plugins in the future)
+
 `matcha_quickfix` - Open/close quickfix menu
 
 ## Contributing

@@ -1,12 +1,19 @@
 local M = {}
 
-M.toggle_diagnostics = function(key)
+M.toggle_diagnostics = function()
 	if vim.diagnostic.is_disabled() then
 		vim.notify("diagnostics enabled", vim.log.levels.INFO, { title = "matcha.nvim" })
 		vim.diagnostic.enable()
 	else
 		vim.notify("diagnostics disabled", vim.log.levels.INFO, { title = "matcha.nvim" })
 		vim.diagnostic.disable()
+	end
+end
+
+M.toggle_diff_overlay = function()
+	local has, mini_diff = pcall(require, "mini.diff")
+	if has then
+		mini_diff.toggle_overlay()
 	end
 end
 
@@ -32,6 +39,7 @@ end
 
 local builtins = {
 	matcha_diagnostics = M.toggle_diagnostics,
+	matcha_diff_overlay = M.toggle_diff_overlay,
 	matcha_quickfix = M.toggle_quickfix,
 }
 
