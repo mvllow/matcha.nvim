@@ -1,4 +1,19 @@
 local M = {}
+local S = {
+	copilot = vim.cmd("Copilot status"):find("Ready"),
+}
+
+M.toggle_copilot = function()
+	if S.copilot then
+		vim.notify("copilot disabled", vim.log.levels.INFO, { title = "matcha.nvim" })
+		S.copilot = false
+		vim.b.copilot_enabled = false
+	else
+		vim.notify("copilot enabled", vim.log.levels.INFO, { title = "matcha.nvim" })
+		S.copilot = true
+		vim.b.copilot_enabled = true
+	end
+end
 
 M.toggle_diagnostics = function()
 	if vim.diagnostic.is_disabled() then
@@ -38,6 +53,7 @@ M.toggle_quickfix = function()
 end
 
 local builtins = {
+	matcha_copilot = M.toggle_copilot,
 	matcha_diagnostics = M.toggle_diagnostics,
 	matcha_diff_overlay = M.toggle_diff_overlay,
 	matcha_quickfix = M.toggle_quickfix,
