@@ -1,16 +1,17 @@
 local M = {}
-local S = {
-	copilot = vim.cmd("Copilot status"):find("Ready"),
-}
 
 M.toggle_copilot = function()
-	if S.copilot then
+	local enabled = false
+	if vim.b.copilot_enabled ~= nil then
+		enabled = vim.b.copilot_enabled
+	else
+		enabled = vim.cmd("Copilot status"):find("Ready")
+	end
+	if enabled then
 		vim.notify("copilot disabled", vim.log.levels.INFO, { title = "matcha.nvim" })
-		S.copilot = false
 		vim.b.copilot_enabled = false
 	else
 		vim.notify("copilot enabled", vim.log.levels.INFO, { title = "matcha.nvim" })
-		S.copilot = true
 		vim.b.copilot_enabled = true
 	end
 end
