@@ -84,8 +84,6 @@ Use matcha to toggle vim options. All boolean values should be supported, as wel
 
 In addition to vim options, matcha includes builtins for toggling more complex types. See [how they're implemented](/lua/matcha/handlers/builtins.lua).
 
-`matcha_copilot` - Enable/disable `copilot.vim`
-
 `matcha_diagnostics` - Enable/disable `vim.diagnostic`
 
 `matcha_diff_overlay` - Enable/disable `mini.diff` overlay (may be expanded to other diff plugins in the future)
