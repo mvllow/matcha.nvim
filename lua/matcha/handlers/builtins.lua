@@ -17,12 +17,12 @@ M.toggle_copilot = function()
 end
 
 M.toggle_diagnostics = function()
-	if vim.diagnostic.is_disabled() then
+	if vim.diagnostic.is_enabled() then
+		vim.notify("diagnostics disabled", vim.log.levels.INFO, { title = "matcha.nvim" })
+		vim.diagnostic.enable(false)
+	else
 		vim.notify("diagnostics enabled", vim.log.levels.INFO, { title = "matcha.nvim" })
 		vim.diagnostic.enable()
-	else
-		vim.notify("diagnostics disabled", vim.log.levels.INFO, { title = "matcha.nvim" })
-		vim.diagnostic.disable()
 	end
 end
 
