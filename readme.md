@@ -90,6 +90,8 @@ In addition to vim options, matcha includes builtins for toggling more complex t
 
 `matcha_diff_overlay` - Enable/disable `mini.diff` overlay (may be expanded to other diff plugins in the future)
 
+`matcha_inlay_hints` - Enable/disable inlay hints
+
 `matcha_quickfix` - Open/close quickfix menu
 
 ## Contributing

@@ -33,6 +33,10 @@ M.toggle_diff_overlay = function()
 	end
 end
 
+M.toggle_inlay_hints = function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end
+
 M.toggle_quickfix = function()
 	local is_open = false
 	for _, window in pairs(vim.fn.getwininfo()) do
@@ -57,6 +61,7 @@ local builtins = {
 	matcha_copilot = M.toggle_copilot,
 	matcha_diagnostics = M.toggle_diagnostics,
 	matcha_diff_overlay = M.toggle_diff_overlay,
+	matcha_inlay_hints = M.toggle_inlay_hints,
 	matcha_quickfix = M.toggle_quickfix,
 }
 
