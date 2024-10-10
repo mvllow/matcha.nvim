@@ -57,12 +57,22 @@ M.toggle_quickfix = function()
 	end
 end
 
+M.toggle_tmux_status = function()
+	local status = vim.split(vim.trim(vim.fn.system("tmux show -w status")), " ")[2]
+	if status == "on" then
+		vim.fn.system("tmux set status off")
+	else
+		vim.fn.system("tmux set status on")
+	end
+end
+
 local builtins = {
 	matcha_copilot = M.toggle_copilot,
 	matcha_diagnostics = M.toggle_diagnostics,
 	matcha_diff_overlay = M.toggle_diff_overlay,
 	matcha_inlay_hints = M.toggle_inlay_hints,
 	matcha_quickfix = M.toggle_quickfix,
+	matcha_tmux_status = M.toggle_tmux_status,
 }
 
 M.toggle_builtin = function(name)
