@@ -1,0 +1,83 @@
+*matcha.nvim* Match and toggle augroups and options
+*Matcha*
+
+MIT License Copyright (c) mvllow
+
+==============================================================================
+
+Features:
+
+- Quickly toggle vim options and augroups
+- Lovely defaults, no configuration required
+- Integrates with [mini.clue](https://github.com/echasnovski/mini.clue) and [which-key.nvim](https://github.com/folke/which-key.nvim)
+
+# Setup ~
+
+Install via your preferred package manager:
+>lua
+  {
+    source = "mvllow/matcha.nvim",
+    config = function()
+      require("matcha").setup()
+    end
+<
+------------------------------------------------------------------------------
+                                                                 *Matcha.config*
+                                `Matcha.config`
+Class ~
+{Config}
+Fields ~
+{prefix} `(string)`
+{keys} `(table<string, string>)`
+
+Default values:
+>lua
+  Matcha.config = {
+  	prefix = [[\]],
+  	keys = {
+  		["-"] = "matcha_supplement",
+  		a = "matcha_copilot",
+  		b = "background",
+  		c = "cmdheight",
+  		d = "matcha_diagnostics",
+  		f = "FormatOnSave",
+  		g = "matcha_diff_overlay",
+  		h = "matcha_inlay_hints",
+  		l = "list",
+  		m = "laststatus",
+  		q = "matcha_quickfix",
+  		s = "spell",
+  		t = "matcha_tmux_status",
+  		w = "wrap",
+  	},
+  	default_option_values = {
+  		cmdheight = 1,
+  		laststatus = 2
+  	}
+  }
+<
+------------------------------------------------------------------------------
+                                                                *Matcha.setup()*
+                            `Matcha.setup`({config})
+Parameters ~
+{config} `(optional)` Config
+
+Usage ~
+>lua
+  require("matcha").setup({
+  	prefix = [[\]],
+  	keys = {
+  		f = "FormatOnSave"
+  	}
+  })
+<
+------------------------------------------------------------------------------
+                                                               *Matcha.toggle()*
+                            `Matcha.toggle`({name})
+Toggle augroups, options or matcha builtins
+
+Parameters ~
+{name} `(string)`
+
+
+ vim:tw=78:ts=8:noet:ft=help:norl:

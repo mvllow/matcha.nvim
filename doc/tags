@@ -1,0 +1,5 @@
+Matcha	matcha.txt	/*Matcha*
+Matcha.config	matcha.txt	/*Matcha.config*
+Matcha.setup()	matcha.txt	/*Matcha.setup()*
+Matcha.toggle()	matcha.txt	/*Matcha.toggle()*
+matcha.nvim	matcha.txt	/*matcha.nvim*

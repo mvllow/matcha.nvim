@@ -1,0 +1,27 @@
+Changelog
+
+v3.0.0
+- feat!: set default keymaps
+- refactor: break out builtins into their own files for improved discoverability
+- docs: add builtins
+
+v2.2.0
+- feat: automatically setup mini.clues with trigger
+- feat(builtins): add `matcha_copilot`
+- feat(builtins): add `matcha_diff_overlay`
+- feat(builtins): add `matcha_inlay_hints`
+- feat(builtins): add `matcha_tmux_status`
+- fix: default config fallback
+- fix: deprecated diagnostic detection
+
+v2.1.0
+- feat(builtins): add `matcha_diagnostics`
+- feat(builtins): add `matcha_quickfix`
+
+v2.0.0
+- feat: support all boolean vim options and some non-boolean values
+- feat: optionally handle keymaps through matcha
+- breaking!: augroups must start with an uppercase letter
+
+v1.0.0
+- Initial release supporting augroup toggling

@@ -2,24 +2,33 @@
 
 > Match and toggle augroups and options
 
-## Install
+## Features
 
-Use your favourite package manager. No setup required.
+- Quickly toggle vim options and augroups
+- Lovely defaults, no configuration required
+- Integrates with [mini.clue](https://github.com/echasnovski/mini.clue) and [which-key.nvim](https://github.com/folke/which-key.nvim)
+
+## Setup
+
+Install via your preferred package manager:
 
 ```lua
 {
-	"mvllow/matcha.nvim"
+  source = "mvllow/matcha.nvim",
+  config = function()
+    require("matcha").setup()
+  end
 }
 ```
 
 ## Usage
 
-Setting `keys` inside the setup function will configure keymaps with a shared prefix and relevant description if using something like [which-key.nvim](https://github.com/folke/which-key.nvim). Your prefix is added as a [mini.clue](https://github.com/echasnovski/mini.clue) trigger.
+Setting `keys` inside the setup function will configure keymaps with a shared prefix and relevant description. Your prefix is automatically added as a [mini.clue](https://github.com/echasnovski/mini.clue) trigger.
 
 ```lua
+-- Default configuration
 require("matcha").setup({
 	prefix = [[\]],
-	-- No keys are set by default
 	keys = {
 		f = "FormatOnSave",
 		b = "background",
@@ -37,7 +46,7 @@ require("matcha").toggle("FormatOnSave")
 
 ### Augroups
 
-Reference existing augroups in our matcha keys or directly via `matcha.toggle`. Group names are expected to start with an uppercase letter.
+Reference existing augroups in our matcha keys or directly via `matcha.toggle`. If the name is not a valid vim option it will be treated as an augroup.
 
 <details>
 
@@ -76,6 +85,8 @@ Use matcha to toggle vim options. All boolean values should be supported, as wel
 
 `cmdheight` - Toggle between 0 and initial value or 1
 
+`foldcolumn` - Toggle between 1 and initial value or 0
+
 `laststatus` - Toggle between 0 and initial value or 2
 
 `signcolumn` - Toggle between "yes" and "no"
@@ -88,11 +99,13 @@ In addition to vim options, matcha includes builtins for toggling more complex t
 
 `matcha_diagnostics` - Enable/disable `vim.diagnostic`
 
-`matcha_diff_overlay` - Enable/disable `mini.diff` overlay (may be expanded to other diff plugins in the future)
+`matcha_diff_overlay` - Enable/disable `mini.diff` overlay
 
 `matcha_inlay_hints` - Enable/disable inlay hints
 
 `matcha_quickfix` - Open/close quickfix menu
+
+`matcha_tmux_status` - Show/hide tmux status
 
 ## Contributing
 
